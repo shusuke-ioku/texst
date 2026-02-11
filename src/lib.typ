@@ -72,12 +72,12 @@
   bodyfmt: body => [#body],
 ).with(numbering: "1")
 
-#let ass = thmbox(
-  "ass",
+#let asp = thmbox(
+  "asp",
   "Assumption",
   inset: (x: 2em, y: .5em),
   base_level: 0,
-  base: "ass",
+  base: "asp",
   titlefmt: smallcaps,
   bodyfmt: body => [#body],
 ).with(numbering: "1")

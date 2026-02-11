@@ -69,7 +69,7 @@ Your document content is passed through `doc`.
 - `caption_note(body)`
 - `caption_with_note(title, note)`
 - `table_note(body)`
-- `theorem`, `proof`, `prop`, `lem`, `rem`, `ass`
+- `theorem`, `proof`, `prop`, `lem`, `rem`, `asp`
 
 ## Style Overrides
 
