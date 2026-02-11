@@ -2,37 +2,70 @@
 
 `texst` is a Typst package for LaTeX-like academic paper formatting.
 
-## Install
+## Start Here
 
-After publication on Typst Universe:
+Use one of these two paths:
+
+1. Published package (Typst Universe):
 
 ```typst
-#import "@preview/texst:0.1.0": *
+#import "@preview/texst:0.1.0": paper
 ```
 
-## Quick Start
+2. Local repository checkout (before/without publication):
+
+```typst
+#import "./src/lib.typ": paper
+```
+
+## Fastest Way to Use It
+
+Copy this into your `main.typ`:
 
 ```typst
 #import "@preview/texst:0.1.0": paper
 
 #show: doc => paper(
-  title: [A Sample Research Paper],
-  subtitle: [A Typst Template with LaTeX-Like Layout],
-  authors: ((name: [First Author]), (name: [Second Author])),
+  title: [Paper Title],
+  subtitle: [Optional Subtitle],
+  authors: (
+    (name: [Author One]),
+    (name: [Author Two]),
+  ),
   date: datetime.today().display("[month repr:long] [day], [year]"),
-  abstract: [This paper demonstrates the texst package.],
+  abstract: [Write a concise abstract here.],
   doc,
 )
 
 #heading(level: 1, outlined: false)[Introduction]
 
-This is a minimal example.
+Start writing your paper.
 ```
+
+## Initialize a Template Project
+
+```bash
+typst init @preview/texst:0.1.0
+```
+
+This generates a starter project from `template/main.typ`.
+
+## What `paper(...)` Does
+
+`paper(...)` applies:
+- page layout and numbering
+- typography defaults
+- heading style and spacing
+- table/figure alignment and numbering
+- equation and reference behavior
+- title block and abstract formatting
+
+Your document content is passed through `doc`.
 
 ## Public API
 
 - `paper(title:, subtitle:, authors:, date:, abstract:, style:, doc)`
-- `nneq(eq)`
+- `nneq(eq)` (unnumbered display equation)
 - `caption_note(body)`
 - `caption_with_note(title, note)`
 - `table_note(body)`
@@ -40,7 +73,7 @@ This is a minimal example.
 
 ## Style Overrides
 
-Use the `style` dictionary in `paper(...)` to override defaults.
+Pass a `style` dictionary to override defaults:
 
 ```typst
 #show: doc => paper(
@@ -49,20 +82,25 @@ Use the `style` dictionary in `paper(...)` to override defaults.
     body_font: "Libertinus Serif",
     page_margin: (x: 1in, y: 1in),
     heading_numbering: "1.",
+    accent_main: rgb(20, 40, 120),
   ),
   doc,
 )
 ```
 
-## Template
+Common keys include:
+- `page_margin`, `page_numbering`
+- `body_font`, `body_size`
+- `paragraph_leading`, `paragraph_indent`
+- `heading_numbering`, `heading_size`, `heading_weight`
+- `footnote_numbering`, `accent_main`
 
-Initialize from template:
-
-```bash
-typst init @preview/texst:0.1.0
-```
-
-## Development
+## Local Development
 
 - `examples/minimal.typ` is the local smoke test.
 - `template/main.typ` is the package template entrypoint.
+- Compile locally:
+
+```bash
+typst compile --root . examples/minimal.typ /tmp/minimal.pdf
+```
