@@ -14,11 +14,13 @@
   doc,
 )
 
-#heading(level: 1, outlined: false)[Introduction]
+#outline(title: [Contents])
+
+#heading(level: 1)[Introduction]
 
 Start your paper here.
 
-#heading(level: 1, outlined: false)[Main Result]
+#heading(level: 1)[Main Result]
 
 #theorem[
 State your main theorem or proposition.
@@ -27,3 +29,9 @@ State your main theorem or proposition.
 #proof[
 Add your proof or argument.
 ]
+
+#heading(level: 1)[Appendix]
+
+#heading(level: 2)[Additional Material]
+
+Place supplementary derivations, robustness checks, or extended tables here.

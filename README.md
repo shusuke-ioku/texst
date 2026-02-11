@@ -37,9 +37,17 @@ Copy this into your `main.typ`:
   doc,
 )
 
-#heading(level: 1, outlined: false)[Introduction]
+#outline(title: [Contents])
+
+#heading(level: 1)[Introduction]
 
 Start writing your paper.
+
+#heading(level: 1)[Appendix]
+
+#heading(level: 2)[Additional Material]
+
+Add supplementary details here.
 ```
 
 ## Initialize a Template Project

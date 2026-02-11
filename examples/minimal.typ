@@ -15,11 +15,13 @@
   doc,
 )
 
-#heading(level: 1, outlined: false)[Introduction]
+#outline(title: [Contents])
+
+#heading(level: 1)[Introduction]
 
 This sample keeps content intentionally generic.
 
-#heading(level: 1, outlined: false)[A Theorem]
+#heading(level: 1)[A Theorem]
 
 #theorem[
 For any real numbers $a$ and $b$, if $a = b$, then $a + 1 = b + 1$.
@@ -30,3 +32,9 @@ Add 1 to both sides.
 ]
 
 #nneq($x^2 + y^2 = z^2$)
+
+#heading(level: 1)[Appendix]
+
+#heading(level: 2)[Additional Derivation]
+
+This appendix section is included as an example of back matter.
