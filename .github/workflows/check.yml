@@ -1,0 +1,15 @@
+name: typst-check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Typst
+        uses: typst-community/setup-typst@v3
+      - name: Compile minimal example
+        run: typst compile --root . examples/minimal.typ /tmp/minimal.pdf
