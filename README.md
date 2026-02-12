@@ -8,12 +8,18 @@
 #import "@preview/texst:0.1.0": paper
 ```
 
+or use all the helpers:
+
+```typst
+#import "@preview/texst:0.1.0": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, ass, cmain, csub, caption-with-note
+```
+
 ## Fastest Way to Use It
 
 Copy this into your `main.typ`:
 
 ```typst
-#import "@preview/texst:0.1.0": paper
+#import "@preview/texst:0.1.0": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, ass, cmain, csub, caption-with-note
 
 #show: doc => paper(
   title: [Paper Title],
