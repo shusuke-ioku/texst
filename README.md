@@ -7,13 +7,17 @@
 ```typst
 #import "@preview/texst:0.1.0": paper
 ```
+or use all the helpers:
+```typst
+#import "@preview/texst:0.1.0": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, ass, cmain, csub, caption-with-note
+```
 
 ## Fastest Way to Use It
 
 Copy this into your `main.typ`:
 
 ```typst
-#import "@preview/texst:0.1.0": paper
+#import "@preview/texst:0.1.0": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, ass, cmain, csub, caption-with-note
 
 #show: doc => paper(
   title: [Paper Title],
@@ -32,12 +36,6 @@ Copy this into your `main.typ`:
 #heading(level: 1)[Introduction]
 
 Start writing your paper.
-
-#heading(level: 1)[Appendix]
-
-#heading(level: 2)[Additional Material]
-
-Add supplementary details here.
 ```
 
 ## Initialize a Template Project
@@ -79,18 +77,6 @@ Requirements:
 - Remove or refactor conflicting layout/title macros.
 - Return a complete updated .typ file.
 ```
-
-## What `paper(...)` Does
-
-`paper(...)` applies:
-- page layout and numbering
-- typography defaults
-- heading style and spacing
-- table/figure alignment and numbering
-- equation and reference behavior
-- title block and abstract formatting
-
-Your document content is passed through `doc`.
 
 ## Public API
 
