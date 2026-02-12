@@ -1,6 +1,6 @@
 # texst
 
-`texst` is a Typst package for LaTeX-like academic paper formatting.
+`TeXst` is a Typst package for LaTeX-like academic paper formatting.
 
 ## Start Here
 
@@ -16,6 +16,21 @@ Use one of these two paths:
 
 ```typst
 #import "./src/lib.typ": paper
+```
+
+## Manual Install (No `@preview`)
+
+If you download the repo manually, you can install it as a local Typst package:
+
+1. Download and unzip this repository.
+2. Copy its contents into this folder structure:
+   - macOS: `~/Library/Application Support/typst/packages/local/texst/0.1.0/`
+   - Linux: `~/.local/share/typst/packages/local/texst/0.1.0/`
+   - Windows: `%APPDATA%\\typst\\packages\\local\\texst\\0.1.0\\`
+3. Import from `@local` in your Typst file:
+
+```typst
+#import "@local/texst:0.1.0": paper
 ```
 
 ## Fastest Way to Use It
