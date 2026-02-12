@@ -4,33 +4,8 @@
 
 ## Start Here
 
-Use one of these two paths:
-
-1. Published package (Typst Universe):
-
 ```typst
 #import "@preview/texst:0.1.0": paper
-```
-
-2. Local repository checkout (before/without publication):
-
-```typst
-#import "./src/lib.typ": paper
-```
-
-## Manual Install (No `@preview`)
-
-If you download the repo manually, you can install it as a local Typst package:
-
-1. Download and unzip this repository.
-2. Copy its contents into this folder structure:
-   - macOS: `~/Library/Application Support/typst/packages/local/texst/0.1.0/`
-   - Linux: `~/.local/share/typst/packages/local/texst/0.1.0/`
-   - Windows: `%APPDATA%\\typst\\packages\\local\\texst\\0.1.0\\`
-3. Import from `@local` in your Typst file:
-
-```typst
-#import "@local/texst:0.1.0": paper
 ```
 
 ## Fastest Way to Use It
@@ -72,6 +47,38 @@ typst init @preview/texst:0.1.0
 ```
 
 This generates a starter project from `template/main.typ`.
+
+## Migrate an Existing Typst File
+
+If you already have a Typst document, use an LLM coding agent to adapt it to `texst` instead of rewriting by hand.
+
+Suggested workflow:
+
+1. Keep your existing content sections as-is.
+2. Replace your current page/layout/title setup with `paper(...)`.
+3. Keep custom macros only if they do not overlap with `texst` helpers.
+4. Re-run compile and fix any remaining import/name conflicts.
+
+Example prompt for an LLM agent:
+
+```text
+Migrate this Typst file to use the texst package.
+
+Requirements:
+- Use: #import "@preview/texst:0.1.0": paper
+- Wrap document with:
+  #show: doc => paper(
+    title: [...],
+    subtitle: [...],
+    authors: (...),
+    date: ...,
+    abstract: [...],
+    doc,
+  )
+- Preserve all existing section content and citations.
+- Remove or refactor conflicting layout/title macros.
+- Return a complete updated .typ file.
+```
 
 ## What `paper(...)` Does
 
