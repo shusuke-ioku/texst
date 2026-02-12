@@ -1,4 +1,4 @@
-#import "@preview/texst:0.1.0": paper, theorem, proof
+#import "@preview/texst:0.1.1": paper, theorem, proof
 
 #show: doc => paper(
   title: [Paper Title],

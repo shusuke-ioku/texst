@@ -5,13 +5,13 @@
 ## Start Here
 
 ```typst
-#import "@preview/texst:0.1.0": paper
+#import "@preview/texst:0.1.1": paper
 ```
 
 or use all the helpers:
 
 ```typst
-#import "@preview/texst:0.1.0": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, ass, cmain, csub, caption-with-note
+#import "@preview/texst:0.1.1": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, asp, cmain, csub, caption-with-note
 ```
 
 ## Fastest Way to Use It
@@ -19,7 +19,7 @@ or use all the helpers:
 Copy this into your `main.typ`:
 
 ```typst
-#import "@preview/texst:0.1.0": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, ass, cmain, csub, caption-with-note
+#import "@preview/texst:0.1.1": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, asp, cmain, csub, caption-with-note
 
 #show: doc => paper(
   title: [Paper Title],
@@ -49,7 +49,7 @@ Add supplementary details here.
 ## Initialize a Template Project
 
 ```bash
-typst init @preview/texst:0.1.0
+typst init @preview/texst:0.1.1
 ```
 
 This generates a starter project from `template/main.typ`.
@@ -71,7 +71,7 @@ Example prompt for an LLM agent:
 Migrate this Typst file to use the texst package.
 
 Requirements:
-- Use: #import "@preview/texst:0.1.0": paper
+- Use: #import "@preview/texst:0.1.1": paper
 - Wrap document with:
   #show: doc => paper(
     title: [...],
@@ -105,6 +105,7 @@ Your document content is passed through `doc`.
 - `caption_note(body)`
 - `caption_with_note(title, note)`
 - `table_note(body)`
+- `cmain(body, color:)`, `csub(body, color:)`
 - `theorem`, `proof`, `prop`, `lem`, `rem`, `asp`
 
 ## Style Overrides
@@ -116,9 +117,16 @@ Pass a `style` dictionary to override defaults:
   title: [Styled Paper],
   style: (
     body_font: "Libertinus Serif",
+    font_size: 11pt,
+    line_spacing: 1.05em,
     page_margin: (x: 1in, y: 1in),
     heading_numbering: "1.",
-    accent_main: rgb(20, 40, 120),
+    cmain_color: rgb(20, 40, 120),
+    csub_color: rgb(70, 90, 130),
+    accent_link: rgb(20, 40, 120),
+    accent_ref: rgb(20, 40, 120),
+    accent_cite: rgb(20, 40, 120),
+    accent_footnote: rgb(20, 40, 120),
   ),
   doc,
 )
@@ -126,10 +134,13 @@ Pass a `style` dictionary to override defaults:
 
 Common keys include:
 - `page_margin`, `page_numbering`
-- `body_font`, `body_size`
-- `paragraph_leading`, `paragraph_indent`
-- `heading_numbering`, `heading_size`, `heading_weight`
-- `footnote_numbering`, `accent_main`
+- `body_font`, `body_size`, `font_size`, `body_color`
+- `paragraph_leading`, `line_spacing`, `paragraph_indent`
+- `heading_numbering`, `heading_size`, `heading_weight`, `heading_color`
+- `title_size`, `subtitle_size`, `title_leading`, `abstract_size`, `abstract_leading`
+- `cmain_color`, `csub_color`
+- `accent_main` (legacy global accent fallback)
+- `accent_link`, `accent_ref`, `accent_cite`, `accent_footnote`
 
 ## Local Development
 
