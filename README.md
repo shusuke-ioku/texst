@@ -127,3 +127,18 @@ Common keys include:
 ```bash
 typst compile --root . examples/minimal.typ /tmp/minimal.pdf
 ```
+
+## Optional: Zotero/PDF MCP Tooling
+
+This repo includes optional MCP helper files under `tooling/mcp/` for research workflows.
+
+1. Open `tooling/mcp/mcp-servers.example.json`.
+2. Copy the `zotero` and `pdf-reader` entries into your MCP client config.
+3. Update command paths and directory env vars for your machine.
+4. Run the Zotero connectivity check:
+
+```bash
+./tooling/mcp/check-zotero-api.sh
+```
+
+Details: `tooling/mcp/README.md`
