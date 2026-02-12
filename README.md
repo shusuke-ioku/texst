@@ -56,15 +56,6 @@ This generates a starter project from `template/main.typ`.
 
 ## Migrate an Existing Typst File
 
-If you already have a Typst document, use an LLM coding agent to adapt it to `texst` instead of rewriting by hand.
-
-Suggested workflow:
-
-1. Keep your existing content sections as-is.
-2. Replace your current page/layout/title setup with `paper(...)`.
-3. Keep custom macros only if they do not overlap with `texst` helpers.
-4. Re-run compile and fix any remaining import/name conflicts.
-
 Example prompt for an LLM agent:
 
 ```text
