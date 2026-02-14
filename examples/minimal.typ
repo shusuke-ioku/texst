@@ -1,4 +1,4 @@
-#import "../src/lib.typ": paper, theorem, proof, prop, nneq, caption_with_note
+#import "../src/lib.typ": paper, theorem, proof, prop, nneq, caption-with-note
 
 #show: doc => paper(
   title: [A Minimal Academic Paper],
@@ -48,7 +48,7 @@ Add 1 to both sides.
     [Intercept], [0.42], [0.11],
     [Treatment], [0.18], [0.07],
   ),
-  caption: caption_with_note(
+  caption: caption-with-note(
     [Illustrative Regression Output],
     [Values are placeholders for demonstration only.],
   ),
