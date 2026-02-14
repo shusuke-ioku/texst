@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 - 2026-02-14
+
+- Fixed theorem/proof-like environments becoming centered by restoring left alignment for `thmenv` figures.
+- Fixed block equation spacing inside theorem environments to match global equation spacing.
+
 ## 0.1.1 - 2026-02-12
 
 - Added configurable style controls for colors, typography size, and line spacing.

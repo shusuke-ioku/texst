@@ -5,13 +5,13 @@
 ## Start Here
 
 ```typst
-#import "@preview/texst:0.1.1": paper
+#import "@preview/texst:0.1.2": paper
 ```
 
 or use all the helpers:
 
 ```typst
-#import "@preview/texst:0.1.1": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, asp, cmain, csub, caption-with-note
+#import "@preview/texst:0.1.2": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, asp, cmain, csub, caption-with-note
 ```
 
 ## Fastest Way to Use It
@@ -19,7 +19,7 @@ or use all the helpers:
 Copy this into your `main.typ`:
 
 ```typst
-#import "@preview/texst:0.1.1": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, asp, cmain, csub, caption-with-note
+#import "@preview/texst:0.1.2": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, asp, cmain, csub, caption-with-note
 
 #show: doc => paper(
   title: [Paper Title],
@@ -49,7 +49,7 @@ Add supplementary details here.
 ## Initialize a Template Project
 
 ```bash
-typst init @preview/texst:0.1.1
+typst init @preview/texst:0.1.2
 ```
 
 This generates a starter project from `template/main.typ`.
@@ -62,7 +62,7 @@ Example prompt for an LLM agent:
 Migrate this Typst file to use the texst package.
 
 Requirements:
-- Use: #import "@preview/texst:0.1.1": paper
+- Use: #import "@preview/texst:0.1.2": paper
 - Wrap document with:
   #show: doc => paper(
     title: [...],

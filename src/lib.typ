@@ -222,6 +222,14 @@
   show table: set align(center)
   show figure.where(kind: table): set align(center)
   show figure.where(body: it => if it.func() == table { true } else { false }): set align(center)
+  // Keep theorem-like environments left-aligned and preserve global block spacing.
+  show figure.where(kind: "thmenv"): set align(left)
+  show figure.where(kind: "thmenv"): set block(above: s.block_above, below: s.block_below)
+  // Restore equation block spacing inside theorem bodies.
+  show figure.where(kind: "thmenv"): it => {
+    show math.equation.where(block: true): set block(above: s.block_above, below: s.block_below)
+    it
+  }
 
   show link: set text(resolved_link_color)
   show ref: set text(resolved_ref_color)
