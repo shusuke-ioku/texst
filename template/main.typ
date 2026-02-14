@@ -4,7 +4,11 @@
   title: [Paper Title],
   subtitle: [Optional Subtitle],
   authors: (
-    (name: [Author One]),
+    (
+      name: [Author One],
+      affiliation: [Department, University],
+      contact: [author.one\@example.edu],
+    ),
     (name: [Author Two]),
   ),
   date: datetime.today().display("[month repr:long] [day], [year]"),

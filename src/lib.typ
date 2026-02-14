@@ -1,6 +1,6 @@
 #import "@preview/ctheorems:1.1.3": *
 
-#let default_style = (
+#let default-style = (
   page_margin: (x: 1.2in, y: 1.2in),
   page_numbering: "1",
   body_font: "New Computer Modern",
@@ -40,11 +40,11 @@
 
 #let nneq(eq) = math.equation(block: true, numbering: none, eq)
 
-#let cmain(body, color: default_style.cmain_color) = text(color, body)
+#let cmain(body, color: default-style.cmain_color) = text(color, body)
 
-#let csub(body, color: default_style.csub_color) = text(color, body)
+#let csub(body, color: default-style.csub_color) = text(color, body)
 
-#let caption_note(body) = align(left)[
+#let caption-note(body) = align(left)[
   #pad(x: 2em, y: 0em)[
     #par(leading: 0.2em)[
       #text(size: 0.9em)[*Note:* #body]
@@ -52,9 +52,9 @@
   ]
 ]
 
-#let caption_with_note(title, note) = [#title #caption_note(note)]
+#let caption-with-note(title, note) = [#title #caption-note(note)]
 
-#let table_note(body) = align(left)[
+#let table-note(body) = align(left)[
   #text(size: 0.9em)[#emph(body)]
 ]
 
@@ -111,9 +111,9 @@
   doc,
 ) = {
   let s = if style == none {
-    default_style
+    default-style
   } else {
-    default_style + style
+    default-style + style
   }
   let resolved_body_size = if style != none and "font_size" in style {
     s.font_size
@@ -124,20 +124,6 @@
     s.line_spacing
   } else {
     s.paragraph_leading
-  }
-  let resolved_cmain_color = if style != none and "cmain_color" in style {
-    s.cmain_color
-  } else if style != none and "accent_main" in style {
-    s.accent_main
-  } else {
-    s.body_color
-  }
-  let resolved_csub_color = if style != none and "csub_color" in style {
-    s.csub_color
-  } else if style != none and "accent_main" in style {
-    s.accent_main
-  } else {
-    s.body_color
   }
   let resolved_link_color = if style != none and "accent_link" in style {
     s.accent_link
@@ -241,20 +227,35 @@
   v(4em)
   set align(center)
   par(leading: s.title_leading)[
-    #text(size: s.title_size, fill: resolved_cmain_color)[#title]
+    #text(size: s.title_size)[#title]
     #if subtitle != none {
       linebreak()
-      text(size: s.subtitle_size, fill: resolved_csub_color)[#subtitle]
+      text(size: s.subtitle_size)[#subtitle]
     }
   ]
 
   let count = authors.len()
+  let render-author = author => {
+    let has_affiliation = "affiliation" in author and author.affiliation != none
+    let has_contact = "contact" in author and author.contact != none
+    [
+      #text(author.name)
+      #if has_affiliation {
+        linebreak()
+        text(size: 0.9em)[#author.affiliation]
+      }
+      #if has_contact {
+        linebreak()
+        text(size: 0.9em)[#author.contact]
+      }
+    ]
+  }
   if count > 0 {
     let ncols = calc.min(count, 3)
     grid(
       columns: (1fr,) * ncols,
       row-gutter: 24pt,
-      ..authors.map(author => [#text(author.name)]),
+      ..authors.map(author => render-author(author)),
     )
   }
 

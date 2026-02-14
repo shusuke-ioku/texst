@@ -1,13 +1,23 @@
-#import "../src/lib.typ": paper, theorem, proof, prop, nneq, caption_with_note
+#import "../src/lib.typ": paper, theorem, proof, prop, nneq, caption-with-note
 
 #show: doc => paper(
   title: [A Minimal Academic Paper],
   subtitle: [Demonstration of the texst Package],
   authors: (
-    (name: [First Author]),
-    (name: [Second Author]),
+    (
+      name: [First Author],
+      affiliation: [Department of Economics, Example University],
+      contact: [first.author\@example.edu],
+    ),
+    (
+      name: [Second Author #footnote(numbering:"*")[Example University. Contact: second.author\@example.edu]],
+    ),
   ),
   date: datetime.today().display("[month repr:long] [day], [year]"),
+  style: (
+    title_size: 1.5em,
+    subtitle_size: 1.2em,
+  ),
   abstract: [
     This is a minimal, generic example that demonstrates the package layout and
     theorem environments.
@@ -17,7 +27,23 @@
 
 #heading(level: 1, outlined: false)[Introduction]
 
-This sample keeps content intentionally generic.
+This sample keeps content intentionally generic. See @tab:sample.
+
+#figure(
+  table(
+    columns: 3,
+    [Variable], [Estimate], [Std. Error],
+    [Intercept], [0.42], [0.11],
+    [Treatment], [0.18], [0.07],
+  ),
+  caption: caption-with-note(
+    [Illustrative Regression Output],
+    [Values are placeholders for demonstration only.],
+  ),
+)<tab:sample>
+
+This example applies basic style overrides in `paper(...)` for title/subtitle
+sizes.
 
 #heading(level: 1, outlined: false)[Core Examples]
 
@@ -40,19 +66,6 @@ then $a + 1 = b + 1$.
 #proof[
 Add 1 to both sides.
 ]
-
-#figure(
-  table(
-    columns: 3,
-    [Variable], [Estimate], [Std. Error],
-    [Intercept], [0.42], [0.11],
-    [Treatment], [0.18], [0.07],
-  ),
-  caption: caption_with_note(
-    [Illustrative Regression Output],
-    [Values are placeholders for demonstration only.],
-  ),
-)
 
 #pagebreak()
 #counter(figure).update(0)

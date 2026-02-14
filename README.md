@@ -2,16 +2,38 @@
 
 `TeXst` is a Typst package for LaTeX-like academic paper formatting.
 
-## Start Here
+## Changelog
 
-```typst
-#import "@preview/texst:0.1.2": paper
-```
+See `CHANGELOG.md` for full details.
 
-or use all the helpers:
+- `0.1.2` (2026-02-14): Fixed theorem/proof alignment and equation spacing inside theorem environments.
+- `0.1.1` (2026-02-12): Added style/color controls and helper color functions.
+- `0.1.0` (2026-02-11): Initial public release.
+
+## Import
 
 ```typst
 #import "@preview/texst:0.1.2": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, asp, cmain, csub, caption-with-note
+```
+
+## Download from GitHub (Single File)
+
+1. Download only `src/lib.typ`:
+
+```bash
+# Latest on main:
+curl -L https://raw.githubusercontent.com/shusuke-ioku/texst/main/src/lib.typ -o texst.typ
+
+# Pinned ref (tag/commit/branch) for reproducibility:
+curl -L https://raw.githubusercontent.com/shusuke-ioku/texst/<ref>/src/lib.typ -o texst.typ
+```
+
+2. Place `texst.typ` in your Typst project directory.
+
+3. Import it locally:
+
+```typst
+#import "./texst.typ": paper, nneq, caption-note, table-note, theorem, proof, prop, lem, rem, asp, cmain, csub, caption-with-note
 ```
 
 ## Fastest Way to Use It
@@ -25,8 +47,15 @@ Copy this into your `main.typ`:
   title: [Paper Title],
   subtitle: [Optional Subtitle],
   authors: (
-    (name: [Author One]),
-    (name: [Author Two]),
+    (
+      name: [Author One],
+      affiliation: [Department of Economics, Example University],
+      contact: [author.one\@example.edu],
+    ),
+    (
+      name: [Author Two],
+      affiliation: [School of Public Policy, Example Institute],
+    ),
   ),
   date: datetime.today().display("[month repr:long] [day], [year]"),
   abstract: [Write a concise abstract here.],
@@ -92,10 +121,11 @@ Your document content is passed through `doc`.
 ## Public API
 
 - `paper(title:, subtitle:, authors:, date:, abstract:, style:, doc)`
+- `authors:` entries support `name` (required), `affiliation` (optional), `contact` (optional)
 - `nneq(eq)` (unnumbered display equation)
-- `caption_note(body)`
-- `caption_with_note(title, note)`
-- `table_note(body)`
+- `caption-note(body)`
+- `caption-with-note(title, note)`
+- `table-note(body)`
 - `cmain(body, color:)`, `csub(body, color:)`
 - `theorem`, `proof`, `prop`, `lem`, `rem`, `asp`
 
@@ -112,8 +142,8 @@ Pass a `style` dictionary to override defaults:
     line_spacing: 1.05em,
     page_margin: (x: 1in, y: 1in),
     heading_numbering: "1.",
-    cmain_color: rgb(20, 40, 120),
-    csub_color: rgb(70, 90, 130),
+    title_size: 1.25em,
+    subtitle_size: 1.05em,
     accent_link: rgb(20, 40, 120),
     accent_ref: rgb(20, 40, 120),
     accent_cite: rgb(20, 40, 120),
@@ -129,9 +159,11 @@ Common keys include:
 - `paragraph_leading`, `line_spacing`, `paragraph_indent`
 - `heading_numbering`, `heading_size`, `heading_weight`, `heading_color`
 - `title_size`, `subtitle_size`, `title_leading`, `abstract_size`, `abstract_leading`
-- `cmain_color`, `csub_color`
 - `accent_main` (legacy global accent fallback)
 - `accent_link`, `accent_ref`, `accent_cite`, `accent_footnote`
+
+Title block text (`title`, `subtitle`, `affiliation`, `contact`) follows
+`body_color`.
 
 ## Local Development
 
