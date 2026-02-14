@@ -2,6 +2,14 @@
 
 `TeXst` is a Typst package for LaTeX-like academic paper formatting.
 
+## Changelog
+
+See `CHANGELOG.md` for full details.
+
+- `0.1.2` (2026-02-14): Fixed theorem/proof alignment and equation spacing inside theorem environments.
+- `0.1.1` (2026-02-12): Added style/color controls and helper color functions.
+- `0.1.0` (2026-02-11): Initial public release.
+
 ## Import
 
 ```typst
@@ -13,7 +21,11 @@
 1. Download only `src/lib.typ`:
 
 ```bash
+# Latest on main:
 curl -L https://raw.githubusercontent.com/shusuke-ioku/texst/main/src/lib.typ -o texst.typ
+
+# Pinned ref (tag/commit/branch) for reproducibility:
+curl -L https://raw.githubusercontent.com/shusuke-ioku/texst/<ref>/src/lib.typ -o texst.typ
 ```
 
 2. Place `texst.typ` in your Typst project directory.
