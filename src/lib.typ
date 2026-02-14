@@ -125,20 +125,6 @@
   } else {
     s.paragraph_leading
   }
-  let resolved_cmain_color = if style != none and "cmain_color" in style {
-    s.cmain_color
-  } else if style != none and "accent_main" in style {
-    s.accent_main
-  } else {
-    s.body_color
-  }
-  let resolved_csub_color = if style != none and "csub_color" in style {
-    s.csub_color
-  } else if style != none and "accent_main" in style {
-    s.accent_main
-  } else {
-    s.body_color
-  }
   let resolved_link_color = if style != none and "accent_link" in style {
     s.accent_link
   } else if style != none and "accent_main" in style {
@@ -241,20 +227,35 @@
   v(4em)
   set align(center)
   par(leading: s.title_leading)[
-    #text(size: s.title_size, fill: resolved_cmain_color)[#title]
+    #text(size: s.title_size)[#title]
     #if subtitle != none {
       linebreak()
-      text(size: s.subtitle_size, fill: resolved_csub_color)[#subtitle]
+      text(size: s.subtitle_size)[#subtitle]
     }
   ]
 
   let count = authors.len()
+  let render-author = author => {
+    let has_affiliation = "affiliation" in author and author.affiliation != none
+    let has_contact = "contact" in author and author.contact != none
+    [
+      #text(author.name)
+      #if has_affiliation {
+        linebreak()
+        text(size: 0.9em)[#author.affiliation]
+      }
+      #if has_contact {
+        linebreak()
+        text(size: 0.9em)[#author.contact]
+      }
+    ]
+  }
   if count > 0 {
     let ncols = calc.min(count, 3)
     grid(
       columns: (1fr,) * ncols,
       row-gutter: 24pt,
-      ..authors.map(author => [#text(author.name)]),
+      ..authors.map(author => render-author(author)),
     )
   }
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Added optional `affiliation` and `contact` fields for each entry in `authors:`.
+- Title block text (`title`, `subtitle`, `affiliation`, `contact`) now follows body text color and is no longer affected by `cmain_color`/`csub_color`.
+- Updated README with a single-file GitHub download flow for `src/lib.typ` (no full repo clone required).
+- Added README version guidance and a pinned `<ref>` raw URL example for reproducible installs.
+
 ## 0.1.2 - 2026-02-14
 
 - Fixed theorem/proof-like environments becoming centered by restoring left alignment for `thmenv` figures.
