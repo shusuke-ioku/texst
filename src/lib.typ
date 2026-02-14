@@ -130,14 +130,14 @@
   } else if style != none and "accent_main" in style {
     s.accent_main
   } else {
-    s.cmain_color
+    s.body_color
   }
   let resolved_csub_color = if style != none and "csub_color" in style {
     s.csub_color
   } else if style != none and "accent_main" in style {
     s.accent_main
   } else {
-    s.csub_color
+    s.body_color
   }
   let resolved_link_color = if style != none and "accent_link" in style {
     s.accent_link
@@ -216,12 +216,20 @@
   show table: set text(size: s.table_text_size)
   show table: set par(leading: s.table_leading)
   show table: set text(top-edge: s.table_top_edge, bottom-edge: s.table_bottom_edge)
-  show figure: set block(below: 0em)
   set block(above: s.block_above, below: s.block_below)
-  show figure: set align(center)
+  show figure.where(kind: table): set block(below: 0em)
+  show figure.where(kind: image): set align(center)
   show table: set align(center)
   show figure.where(kind: table): set align(center)
+  show figure.where(body: it => if it.func() == table { true } else { false }): set block(below: 0em)
   show figure.where(body: it => if it.func() == table { true } else { false }): set align(center)
+  // Keep theorem-like environments left-aligned and preserve global block spacing.
+  show figure.where(kind: "thmenv"): set block(above: s.block_above, below: s.block_below)
+  // Restore equation block spacing inside theorem bodies and force left alignment.
+  show figure.where(kind: "thmenv"): it => {
+    show math.equation.where(block: true): set block(above: s.block_above, below: s.block_below)
+    align(left, it.body)
+  }
 
   show link: set text(resolved_link_color)
   show ref: set text(resolved_ref_color)
@@ -233,8 +241,11 @@
   v(4em)
   set align(center)
   par(leading: s.title_leading)[
-    #text(size: s.title_size, fill: resolved_cmain_color)[#title]\\
-    #if subtitle != none { text(size: s.subtitle_size, fill: resolved_csub_color)[#subtitle] }
+    #text(size: s.title_size, fill: resolved_cmain_color)[#title]
+    #if subtitle != none {
+      linebreak()
+      text(size: s.subtitle_size, fill: resolved_csub_color)[#subtitle]
+    }
   ]
 
   let count = authors.len()

@@ -1,4 +1,4 @@
-#import "../src/lib.typ": paper, theorem, proof, nneq, caption_with_note
+#import "../src/lib.typ": paper, theorem, proof, prop, nneq, caption_with_note
 
 #show: doc => paper(
   title: [A Minimal Academic Paper],
@@ -15,24 +15,26 @@
   doc,
 )
 
-#outline(title: [Contents])
-
-#heading(level: 1)[Introduction]
+#heading(level: 1, outlined: false)[Introduction]
 
 This sample keeps content intentionally generic.
 
-#heading(level: 1)[Core Examples]
+#heading(level: 1, outlined: false)[Core Examples]
 
-#heading(level: 2)[Equation Example]
+#heading(level: 2, outlined: false)[Equation Example]
 
 #nneq($
 f(x) = alpha + beta x + epsilon
 $)
 
-#heading(level: 2)[Theorem Example]
+#heading(level: 2, outlined: false)[Theorem Example]
 
 #theorem[
-For any real numbers $a$ and $b$, if $a = b$, then $a + 1 = b + 1$.
+For any real numbers $a$ and $b$, if 
+$
+a = b
+$
+then $a + 1 = b + 1$.
 ]
 
 #proof[
@@ -52,8 +54,24 @@ Add 1 to both sides.
   ),
 )
 
-#heading(level: 1)[Appendix]
+#pagebreak()
+#counter(figure).update(0)
+#set figure(numbering: (..n) => "A." + numbering("1", n.at(0)))
 
-#heading(level: 2)[Additional Derivation]
+#counter(heading).update(0)
+#set heading(
+  numbering: "A.1.",
+  supplement: "Appendix"
+)
 
-This appendix section is included as an example of back matter.
+#align(center)[
+  #smallcaps(text(1.2em)[*Appendix*])
+]
+
+#show outline.entry: it => link(
+  it.element.location(),
+  it.indented(it.prefix(), it.inner()),
+)
+#outline()
+
+#heading(level: 1)[Omitted Proofs]
